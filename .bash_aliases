@@ -1,10 +1,5 @@
 shopt -s expand_aliases
 
-# Python
-alias virtualenv2='/usr/local/bin/virtualenv'
-alias virtualenv3='~/Library/Python/3.4/bin/virtualenv'
-alias ipython3='/Library/Frameworks/Python.framework/Versions/3.4/bin/ipython3'
-
 # Homebrew-installed Vim
 alias vim='/usr/local/Cellar/vim/7.4.903/bin/vim'
 

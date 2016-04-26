@@ -19,9 +19,15 @@ PS1="\n${VENV_PROMPT}`EXT_COLOR 242`\d \@ ⎮ \u ⎮ \w\$(__git_ps1)\n`EXT_COLOR
 
 export EDITOR=nvim
 
-# Python
+# virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs
 source /usr/local/bin/virtualenvwrapper.sh
+
+# pyenv
+export PATH="~/.pyenv/shims:$PATH"
+if [ -f ~/.pyenv/completions/pyenv.bash ]; then
+  source ~/.pyenv/completions/pyenv.bash
+fi
 
 # Add Geogig to PATH
 export PATH="$PATH:/usr/local/bin/geogig/bin"
