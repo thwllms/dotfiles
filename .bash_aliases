@@ -16,6 +16,8 @@ ggr () {
 export -f ggr
 alias gs='git status'
 alias gd='git diff'
+git_log_format="%C(cyan)%h%C(reset) - %C(dim cyan)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(yellow)%d%C(reset)"
+alias ghist="git log --graph --abbrev-commit --decorate --format=format:'$git_log_format' --all"
 
 # Vagrant
 alias v='vagrant'
