@@ -30,7 +30,7 @@ if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
 fi
 
 # pyenv
-if [ -f ~/.pyenv/shims ]; then
+if [ -d ~/.pyenv/shims ]; then
   export PATH="~/.pyenv/shims:$PATH"
 fi
 if [ -f ~/.pyenv/completions/pyenv.bash ]; then
@@ -38,7 +38,7 @@ if [ -f ~/.pyenv/completions/pyenv.bash ]; then
 fi
 
 # Add Geogig to PATH
-if [ -f /usr/local/bin/geogig/bin ]; then
+if [ -d /usr/local/bin/geogig/bin ]; then
   export PATH="$PATH:/usr/local/bin/geogig/bin"
 fi
 
