@@ -17,20 +17,30 @@ function get_venv_prompt () {
 VENV_PROMPT="\$(get_venv_prompt)"
 PS1="\n${VENV_PROMPT}`EXT_COLOR 242`\d \@ ⎮ \u ⎮ \w\$(__git_ps1)\n`EXT_COLOR 202`▸\[\033[0m\] "
 
-export EDITOR=nvim
+if ! type "nvim" &> /dev/null; then
+  export EDITOR="vim"
+else
+  export EDITOR="nvim"
+fi
 
 # virtualenvwrapper
-export WORKON_HOME=$HOME/.virtualenvs
-source /usr/local/bin/virtualenvwrapper.sh
+if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
+  export WORKON_HOME=$HOME/.virtualenvs
+  source /usr/local/bin/virtualenvwrapper.sh
+fi
 
 # pyenv
-export PATH="~/.pyenv/shims:$PATH"
+if [ -f ~/.pyenv/shims ]; then
+  export PATH="~/.pyenv/shims:$PATH"
+fi
 if [ -f ~/.pyenv/completions/pyenv.bash ]; then
   source ~/.pyenv/completions/pyenv.bash
 fi
 
 # Add Geogig to PATH
-export PATH="$PATH:/usr/local/bin/geogig/bin"
+if [ -f /usr/local/bin/geogig/bin ]; then
+  export PATH="$PATH:/usr/local/bin/geogig/bin"
+fi
 
 # Add bash aliases.
 if [ -f ~/.bash_aliases ]; then

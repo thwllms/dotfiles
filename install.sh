@@ -16,3 +16,8 @@ do
   ln -si "$CWD/$dotfile" ~
 done
 echo "Done."
+
+echo "Installing molokai colorscheme for Vim."
+mkdir -p ~/.vim/colors
+curl https://raw.githubusercontent.com/tomasr/molokai/master/colors/molokai.vim \
+  > ~/.vim/colors/molokai.vim

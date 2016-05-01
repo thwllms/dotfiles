@@ -1,7 +1,9 @@
 shopt -s expand_aliases
 
 # Homebrew-installed Vim
-alias vim='/usr/local/Cellar/vim/7.4.903/bin/vim'
+if [ -f /usr/local/Cellar/vim/7.4.903/bin/vim ]; then
+  alias vim='/usr/local/Cellar/vim/7.4.903/bin/vim'
+fi
 
 # ls colors
 alias ls='ls -G'
