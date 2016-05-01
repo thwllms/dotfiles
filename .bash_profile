@@ -30,11 +30,8 @@ if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
 fi
 
 # pyenv
-if [ -d ~/.pyenv/shims ]; then
-  export PATH="~/.pyenv/shims:$PATH"
-fi
-if [ -f ~/.pyenv/completions/pyenv.bash ]; then
-  source ~/.pyenv/completions/pyenv.bash
+if type "pyenv" &> /dev/null; then
+  eval "$(pyenv init -)"
 fi
 
 # Add Geogig to PATH
