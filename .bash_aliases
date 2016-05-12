@@ -23,7 +23,8 @@ alias ghist="git log --graph --abbrev-commit --decorate --format=format:'$git_lo
 
 # Vagrant
 alias v='vagrant'
-alias vs='vagrant ssh'
+alias vs='vagrant status'
+alias vssh='vagrant ssh'
 
 alias untargz='tar xzvf'
 alias targz='tar czvf'
