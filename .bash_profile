@@ -39,6 +39,10 @@ if [ -d /usr/local/bin/geogig/bin ]; then
   export PATH="$PATH:/usr/local/bin/geogig/bin"
 fi
 
+# JBOSS
+export JBOSS_HOME=/usr/local/opt/jboss-as/libexec
+export PATH=${PATH}:${JBOSS_HOME}/bin
+
 # Add bash aliases.
 if [ -f ~/.bash_aliases ]; then
     source ~/.bash_aliases
