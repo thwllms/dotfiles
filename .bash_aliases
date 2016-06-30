@@ -20,6 +20,7 @@ alias gs='git status'
 alias gd='git diff'
 git_log_format="%C(cyan)%h%C(reset) - %C(dim cyan)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(yellow)%d%C(reset)"
 alias ghist="git log --graph --abbrev-commit --decorate --format=format:'$git_log_format' --all"
+alias gb='git branch'
 
 # Vagrant
 alias v='vagrant'
@@ -38,3 +39,8 @@ alias fgrep='fgrep --color=auto'
 alias c='clear'
 
 alias wget='wget -c'
+
+# Get any local (non-synchronized) aliases
+if [ -f ~/.bash_aliases.local ]; then
+    source ~/.bash_aliases.local
+fi

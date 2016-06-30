@@ -43,6 +43,11 @@ fi
 export JBOSS_HOME=/usr/local/opt/jboss-as/libexec
 export PATH=${PATH}:${JBOSS_HOME}/bin
 
+# Get any local (non-synchronized) profile settings
+if [ -f ~/.bash_profile.local ]; then
+    source ~/.bash_profile.local
+fi
+
 # Add bash aliases.
 if [ -f ~/.bash_aliases ]; then
     source ~/.bash_aliases

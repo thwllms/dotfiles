@@ -52,19 +52,25 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'plasticboy/vim-markdown'
 Plug 'kien/ctrlp.vim'
 Plug 'rodjek/vim-puppet'
+Plug 'milkypostman/vim-togglelist'
 call plug#end()
 
 " NERDTree
 let NERDTreeIgnore = ['\.pyc$', '__pycache__']
 autocmd VimEnter * NERDTreeToggle
 
-" vim-airline
-let g:airline_powerline_fonts = 1
-
-" python-mode
-"let g:pymode_python = 'python' " uncomment for Python 2.7
-let g:pymode_python = 'python3' " uncomment for Python 3.4
-let g:pymode_rope = 1 " autocompletion (0 = off, 1 = on)
+" vim-togglelist
+let g:toggle_list_no_mappings = 1
+let g:toggle_list_copen_command="lopen"
+nmap <script> <silent> <c-l> :call ToggleLocationList()<CR>
+nmap <script> <silent> <c-q> :call ToggleQuickfixList()<CR>
 
 " force black background
 highlight Normal ctermbg=black
+
+" Get any local (non-syncrhonized) .vimrc settings
+try
+    source ~/.vimrc.local
+catch
+    " do nothing
+endtry
