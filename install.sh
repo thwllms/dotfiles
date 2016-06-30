@@ -21,3 +21,5 @@ echo "Installing molokai colorscheme for Vim."
 mkdir -p ~/.vim/colors
 curl https://raw.githubusercontent.com/tomasr/molokai/master/colors/molokai.vim \
   > ~/.vim/colors/molokai.vim
+
+echo "Run 'source ~/.bash_profile' to update."
