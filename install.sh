@@ -4,6 +4,7 @@ DOTFILES=(
 ".bash_profile"
 ".bash_aliases"
 ".vimrc"
+".ideavimrc"
 "git-prompt.sh"
 )
 
