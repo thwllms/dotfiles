@@ -26,6 +26,9 @@ autocmd Filetype yaml setlocal ts=2 sts=2 sw=2
 autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
 autocmd Filetype puppet setlocal ts=2 sts=2 sw=2
 
+set foldmethod=indent
+set foldlevelstart=99
+
 " settings for Vagrantfiles
 augroup vagrant
   au!
