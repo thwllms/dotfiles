@@ -17,6 +17,7 @@ git_log_format="%C(cyan)%h%C(reset) - %C(dim cyan)(%ar)%C(reset) %C(white)%s%C(r
 alias ghist="git log --graph --abbrev-commit --decorate --format=format:'$git_log_format' --all"
 alias gb='git branch'
 alias gnpd='git --no-pager diff'
+alias gdf='git diff --name-only'
 
 # Vagrant
 alias v='vagrant'
