@@ -5,7 +5,7 @@ alias ls='ls -G'
 export LSCOLORS="ExGxBxDxCxEgEdxbxgxcxd"
 
 # Git
-alias gg='git grep -In'
+alias gg='git --no-pager grep -In'
 alias ggl='git grep -Il'
 ggr () {
     git grep -Il $1 | xargs sed -i '' -e "s/${1}/${2}/g" 
