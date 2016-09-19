@@ -58,6 +58,7 @@ Plug 'kien/ctrlp.vim'
 Plug 'rodjek/vim-puppet'
 Plug 'milkypostman/vim-togglelist'
 Plug 'solarnz/thrift.vim'
+Plug 'leafgarland/typescript-vim'
 call plug#end()
 
 " NERDTree
