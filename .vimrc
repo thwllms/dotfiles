@@ -24,6 +24,7 @@ set ts=4 sts=4 sw=4
 autocmd Filetype html setlocal ts=2 sts=2 sw=2
 autocmd Filetype yaml setlocal ts=2 sts=2 sw=2
 autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
+autocmd Filetype typescript setlocal ts=2 sts=2 sw=2
 autocmd Filetype puppet setlocal ts=2 sts=2 sw=2
 
 set foldmethod=indent
@@ -59,6 +60,9 @@ Plug 'rodjek/vim-puppet'
 Plug 'milkypostman/vim-togglelist'
 Plug 'solarnz/thrift.vim'
 Plug 'leafgarland/typescript-vim'
+Plug 'quramy/tsuquyomi' " typescript completion
+Plug 'shougo/vimproc.vim' " dependency for tsuguyomi
+Plug 'jason0x43/vim-js-indent'
 call plug#end()
 
 " NERDTree
