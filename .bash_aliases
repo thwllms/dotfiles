@@ -18,6 +18,7 @@ alias ghist="git log --graph --abbrev-commit --decorate --format=format:'$git_lo
 alias gb='git branch'
 alias gnpd='git --no-pager diff'
 alias gdf='git diff --name-only'
+alias gdno='git diff --name-only'
 
 # Vagrant
 alias v='vagrant'
