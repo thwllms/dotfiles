@@ -39,6 +39,11 @@ if [ -d /usr/local/bin/geogig/bin ]; then
   export PATH="$PATH:/usr/local/bin/geogig/bin"
 fi
 
+# Add /usr/local/sbin to PATH
+if [ -d /usr/local/sbin ]; then
+  export PATH="$PATH:/usr/local/sbin"
+fi
+
 # JBOSS
 export JBOSS_HOME=/usr/local/opt/jboss-as/libexec
 export PATH=${PATH}:${JBOSS_HOME}/bin

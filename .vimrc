@@ -8,6 +8,8 @@ set colorcolumn=115 "highlight column
 set hlsearch "turn on search highlighting
 set showmatch "show the matching part of the pair for [] {} and ()
 
+autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
+
 " wrap text
 set wrap linebreak nolist
 
@@ -44,7 +46,7 @@ let $BASH_ENV = '~/.bash_aliases'
 "" -------
 filetype plugin on
 call plug#begin('~/.config/nvim/plugged')
-Plug 'klen/python-mode', { 'for': 'python' }
+"Plug 'klen/python-mode', { 'for': 'python' }
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'wellle/targets.vim'
 Plug 'scrooloose/nerdcommenter'
@@ -63,6 +65,8 @@ Plug 'leafgarland/typescript-vim'
 Plug 'quramy/tsuquyomi' " typescript completion
 Plug 'shougo/vimproc.vim' " dependency for tsuguyomi
 Plug 'jason0x43/vim-js-indent'
+Plug 'tfnico/vim-gradle'
+Plug 'mxw/vim-jsx'
 call plug#end()
 
 " NERDTree
@@ -74,6 +78,19 @@ let g:toggle_list_no_mappings = 1
 let g:toggle_list_copen_command="lopen"
 nmap <script> <silent> <c-l> :call ToggleLocationList()<CR>
 nmap <script> <silent> <c-q> :call ToggleQuickfixList()<CR>
+
+" syntastic
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_javascript_checkers = ['eslint']
+
+" vim-jsx
+let g:jsx_ext_required = 0 " allow JSX in normal JS files
 
 " force black background
 highlight Normal ctermbg=black

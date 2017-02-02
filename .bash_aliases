@@ -38,6 +38,8 @@ alias c='clear'
 
 alias wget='wget -c'
 
+alias LOCAL_HOST=`ifconfig en0 | awk '/inet /{print $2}' | cut -f2 -d':'`
+
 # Get any local (non-synchronized) aliases
 if [ -f ~/.bash_aliases.local ]; then
     source ~/.bash_aliases.local
