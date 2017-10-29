@@ -15,7 +15,7 @@ function get_venv_prompt () {
   echo "$PYTHON_VIRTUALENV"
 }
 VENV_PROMPT="\$(get_venv_prompt)"
-PS1="\n${VENV_PROMPT}`EXT_COLOR 242`\d \@ ⎮ \u ⎮ \w\$(__git_ps1)\n`EXT_COLOR 202`▸\[\033[0m\] "
+PS1="\n${VENV_PROMPT}`EXT_COLOR 242`\$(date \"+%a %d %b %H:%M\") • \u@\h:\w\$(__git_ps1)\n`EXT_COLOR 202`▸\[\033[0m\] "
 
 if ! type "nvim" &> /dev/null; then
   export EDITOR="vim"
@@ -42,6 +42,11 @@ fi
 # Add /usr/local/sbin to PATH
 if [ -d /usr/local/sbin ]; then
   export PATH="$PATH:/usr/local/sbin"
+fi
+
+# Add ~/bin to PATH
+if [ -d ~/bin ]; then
+  export PATH="$PATH:~/bin"
 fi
 
 # JBOSS

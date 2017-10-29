@@ -7,6 +7,7 @@ let python_highlight_all = 1 "enable all Python syntax highlighting features
 set colorcolumn=115 "highlight column
 set hlsearch "turn on search highlighting
 set showmatch "show the matching part of the pair for [] {} and ()
+set mouse=a
 
 autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 
@@ -26,6 +27,7 @@ set ts=4 sts=4 sw=4
 autocmd Filetype html setlocal ts=2 sts=2 sw=2
 autocmd Filetype yaml setlocal ts=2 sts=2 sw=2
 autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
+autocmd Filetype json setlocal ts=2 sts=2 sw=2
 autocmd Filetype typescript setlocal ts=2 sts=2 sw=2
 autocmd Filetype puppet setlocal ts=2 sts=2 sw=2
 
@@ -39,8 +41,13 @@ augroup vagrant
   setlocal ts=2 sts=2 sw=2
 augroup END
 
+" wrap lines for Markdown files
+au BufRead,BufNewFile *.md setlocal textwidth=80
+
 let $BASH_ENV = '~/.bash_aliases'
 
+let g:python_host_prog = '/Users/twilliams/.pyenv/versions/neovim2/bin/python'
+let g:python3_host_prog = '/Users/twilliams/.pyenv/versions/neovim3/bin/python'
 
 "" PLUGINS
 "" -------
@@ -48,30 +55,32 @@ filetype plugin on
 call plug#begin('~/.config/nvim/plugged')
 "Plug 'klen/python-mode', { 'for': 'python' }
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'wellle/targets.vim'
+"Plug 'wellle/targets.vim'
 Plug 'scrooloose/nerdcommenter'
+Plug 'w0rp/ale'
 Plug 'tpope/vim-fugitive'
-Plug 'scrooloose/syntastic'
-Plug 'pangloss/vim-javascript'
+"Plug 'pangloss/vim-javascript'
 Plug 'powerline/fonts'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'plasticboy/vim-markdown'
+"Plug 'plasticboy/vim-markdown'
 Plug 'kien/ctrlp.vim'
-Plug 'rodjek/vim-puppet'
+"Plug 'rodjek/vim-puppet'
 Plug 'milkypostman/vim-togglelist'
 Plug 'solarnz/thrift.vim'
 Plug 'leafgarland/typescript-vim'
-Plug 'quramy/tsuquyomi' " typescript completion
-Plug 'shougo/vimproc.vim' " dependency for tsuguyomi
+"Plug 'quramy/tsuquyomi' " typescript completion
+"Plug 'shougo/vimproc.vim' " dependency for tsuguyomi
 Plug 'jason0x43/vim-js-indent'
 Plug 'tfnico/vim-gradle'
-Plug 'mxw/vim-jsx'
+"Plug 'mxw/vim-jsx'
+Plug 'saltstack/salt-vim'
+Plug 'elmcast/elm-vim'
 call plug#end()
 
 " NERDTree
 let NERDTreeIgnore = ['\.pyc$', '__pycache__']
-autocmd VimEnter * NERDTreeToggle
+nmap <script> <silent> <c-n> :NERDTreeToggle<CR>
 
 " vim-togglelist
 let g:toggle_list_no_mappings = 1
@@ -83,11 +92,17 @@ nmap <script> <silent> <c-q> :call ToggleQuickfixList()<CR>
 "set statusline+=%#warningmsg#
 "set statusline+=%{SyntasticStatuslineFlag()}
 "set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_javascript_checkers = ['eslint']
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
+"let g:syntastic_javascript_checkers = ['eslint']
+
+let g:ale_python_flake8_executable = '/Users/twilliams/.pyenv/shims/flake8'
+let g:ale_linters = {
+      \ 'javascript': ['eslint'],
+      \}
+"let g:ale_javascript_eslint_options = '-c .eslintrc.json'
 
 " vim-jsx
 let g:jsx_ext_required = 0 " allow JSX in normal JS files
