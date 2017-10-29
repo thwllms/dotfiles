@@ -41,9 +41,6 @@ augroup vagrant
   setlocal ts=2 sts=2 sw=2
 augroup END
 
-" wrap lines for Markdown files
-au BufRead,BufNewFile *.md setlocal textwidth=80
-
 let $BASH_ENV = '~/.bash_aliases'
 
 let g:python_host_prog = '/Users/twilliams/.pyenv/versions/neovim2/bin/python'
