@@ -9,10 +9,26 @@ set hlsearch "turn on search highlighting
 set showmatch "show the matching part of the pair for [] {} and ()
 set mouse=a
 
-autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
+" <c-h> to toggle auto-highlighting of matching words
+function ToggleAutoHighlightMatchingWord()
+  if !exists('#ToggleAutoHighlightMatchingWordGroup#CursorMoved')
+    exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
+    augroup ToggleAutoHighlightMatchingWordGroup
+      autocmd!
+      autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
+    augroup END
+  else
+    exe 'match IncSeach //'
+    augroup ToggleAutoHighlightMatchingWordGroup
+      autocmd!
+    augroup END
+  endif
+endfunction
+noremap <c-h> :call ToggleAutoHighlightMatchingWord()<CR>
 
 " wrap text
 set wrap linebreak nolist
+set textwidth=120
 
 " line numbers
 set relativenumber
@@ -30,6 +46,9 @@ autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
 autocmd Filetype json setlocal ts=2 sts=2 sw=2
 autocmd Filetype typescript setlocal ts=2 sts=2 sw=2
 autocmd Filetype puppet setlocal ts=2 sts=2 sw=2
+autocmd Filetype css setlocal ts=2 sts=2 sw=2
+autocmd Filetype scss setlocal ts=2 sts=2 sw=2
+autocmd Filetype groovy setlocal ts=4 sts=4 sw=4
 
 set foldmethod=indent
 set foldlevelstart=99
@@ -73,10 +92,23 @@ Plug 'tfnico/vim-gradle'
 "Plug 'mxw/vim-jsx'
 Plug 'saltstack/salt-vim'
 Plug 'elmcast/elm-vim'
+"Plug 'valloric/youcompleteme'
+Plug 'vimwiki/vimwiki'
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 call plug#end()
 
+"deoplete
+let g:deoplete#enable_at_startup = 1
+
 " NERDTree
-let NERDTreeIgnore = ['\.pyc$', '__pycache__']
+let NERDTreeIgnore = ['\.pyc$', '__pycache__', 'node_modules']
 nmap <script> <silent> <c-n> :NERDTreeToggle<CR>
 
 " vim-togglelist
@@ -106,6 +138,10 @@ let g:jsx_ext_required = 0 " allow JSX in normal JS files
 
 " force black background
 highlight Normal ctermbg=black
+
+" vimwiki
+let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki/', 'syntax': 'markdown', 'ext': '.md', 'nested_syntaxes': {'vim': 'vim'}}]
+let g:vimwiki_use_mouse = 1
 
 " Get any local (non-syncrhonized) .vimrc settings
 try
