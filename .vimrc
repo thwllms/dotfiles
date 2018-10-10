@@ -20,7 +20,7 @@ function! ToggleAutoHighlightMatchingWord()
   else
     let currentTab = tabpagenr()
     let currentWindow = tabpagewinnr(currentTab)
-    exe 'tabdo match IncSeach //'
+    exe 'tabdo windo match IncSeach //'
     exe currentTab 'tabn'
     exe currentWindow . 'wincmd w'
     augroup ToggleAutoHighlightMatchingWordGroup
