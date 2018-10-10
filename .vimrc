@@ -18,7 +18,11 @@ function ToggleAutoHighlightMatchingWord()
       autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
     augroup END
   else
-    exe 'match IncSeach //'
+    let currentTab = tabpagenr()
+    let currentWindow = winnr()
+    exe 'tabdo windo match IncSeach //'
+    exe 'normal ' currentTab 'gt'
+    exe currentWindow . 'wincmd w'
     augroup ToggleAutoHighlightMatchingWordGroup
       autocmd!
     augroup END
