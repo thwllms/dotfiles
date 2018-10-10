@@ -10,7 +10,7 @@ set showmatch "show the matching part of the pair for [] {} and ()
 set mouse=a
 
 " <c-h> to toggle auto-highlighting of matching words
-function ToggleAutoHighlightMatchingWord()
+function! ToggleAutoHighlightMatchingWord()
   if !exists('#ToggleAutoHighlightMatchingWordGroup#CursorMoved')
     exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
     augroup ToggleAutoHighlightMatchingWordGroup
@@ -19,9 +19,9 @@ function ToggleAutoHighlightMatchingWord()
     augroup END
   else
     let currentTab = tabpagenr()
-    let currentWindow = winnr()
+    let currentWindow = tabpagewinnr(currentTab)
     exe 'tabdo windo match IncSeach //'
-    exe 'normal ' currentTab 'gt'
+    exe currentTab 'tabn'
     exe currentWindow . 'wincmd w'
     augroup ToggleAutoHighlightMatchingWordGroup
       autocmd!
