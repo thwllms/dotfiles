@@ -30,6 +30,16 @@ function! ToggleAutoHighlightMatchingWord()
 endfunction
 noremap <c-h> :call ToggleAutoHighlightMatchingWord()<CR>
 
+" <c-s> to prompt for search/replace of the current word
+function! SearchReplaceCurrentWord()
+  let cword = expand('<cword>')
+  let userInput = input(':%s/' . cword . '/')
+  if len(userInput) > 0
+    exe '%s/' . cword . '/' . userInput
+  endif
+endfunction
+noremap <c-s> :call SearchReplaceCurrentWord()<CR>
+
 " wrap text
 set wrap linebreak nolist
 set textwidth=120
@@ -144,8 +154,9 @@ let g:jsx_ext_required = 0 " allow JSX in normal JS files
 highlight Normal ctermbg=black
 
 " vimwiki
-let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki/', 'syntax': 'markdown', 'ext': '.md', 'nested_syntaxes': {'vim': 'vim'}}]
+let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki/', 'syntax': 'markdown', 'ext': '.md', 'nested_syntaxes': {'vim': 'vim', 'javascript': 'javascript'}}]
 let g:vimwiki_use_mouse = 1
+let g:vimwiki_folding = "syntax"
 
 " Get any local (non-syncrhonized) .vimrc settings
 try
