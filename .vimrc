@@ -1,6 +1,6 @@
 colorscheme molokai
 let g:rehash256 = 1
-set background=dark
+"set background=dark
 
 syntax enable "enable syntax highlighting
 let python_highlight_all = 1 "enable all Python syntax highlighting features
@@ -12,10 +12,12 @@ set mouse=a
 " <c-h> to toggle auto-highlighting of matching words
 function! ToggleAutoHighlightMatchingWord()
   if !exists('#ToggleAutoHighlightMatchingWordGroup#CursorMoved')
-    exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
+    exe printf('match IncSearch /\V\<%s\>/',
+      \ escape(expand('<cword>'), '/\'))
     augroup ToggleAutoHighlightMatchingWordGroup
       autocmd!
-      autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
+      autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/',
+            \ escape(expand('<cword>'), '/\'))
     augroup END
   else
     let currentTab = tabpagenr()
@@ -108,6 +110,7 @@ Plug 'saltstack/salt-vim'
 Plug 'elmcast/elm-vim'
 "Plug 'valloric/youcompleteme'
 Plug 'vimwiki/vimwiki'
+Plug 'nathanaelkane/vim-indent-guides'
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
@@ -124,6 +127,9 @@ let g:deoplete#enable_at_startup = 1
 " NERDTree
 let NERDTreeIgnore = ['\.pyc$', '__pycache__', 'node_modules']
 nmap <script> <silent> <c-n> :NERDTreeToggle<CR>
+
+" NERD Commenter
+let g:NERDCustomDelimiters = { 'javascript': { 'left': '// ' } }
 
 " vim-togglelist
 let g:toggle_list_no_mappings = 1
@@ -157,6 +163,10 @@ highlight Normal ctermbg=black
 let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki/', 'syntax': 'markdown', 'ext': '.md', 'nested_syntaxes': {'vim': 'vim', 'javascript': 'javascript'}}]
 let g:vimwiki_use_mouse = 1
 let g:vimwiki_folding = "syntax"
+
+let g:indent_guides_auto_colors = 0
+hi IndentGuidesOdd  guibg=DarkGrey  ctermbg=234
+hi IndentGuidesEven guibg=LightGrey ctermbg=236
 
 " Get any local (non-syncrhonized) .vimrc settings
 try
