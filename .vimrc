@@ -4,7 +4,7 @@ let g:rehash256 = 1
 
 syntax enable "enable syntax highlighting
 let python_highlight_all = 1 "enable all Python syntax highlighting features
-set colorcolumn=115 "highlight column
+"set colorcolumn=115 "highlight column
 set hlsearch "turn on search highlighting
 set showmatch "show the matching part of the pair for [] {} and ()
 set mouse=a
@@ -44,7 +44,6 @@ noremap <c-s> :call SearchReplaceCurrentWord()<CR>
 
 " wrap text
 set wrap linebreak nolist
-set textwidth=120
 
 " line numbers
 set relativenumber
@@ -65,6 +64,7 @@ autocmd Filetype puppet setlocal ts=2 sts=2 sw=2
 autocmd Filetype css setlocal ts=2 sts=2 sw=2
 autocmd Filetype scss setlocal ts=2 sts=2 sw=2
 autocmd Filetype groovy setlocal ts=4 sts=4 sw=4
+autocmd Filetype markdown setlocal ts=2 sts=2 sw=2 tw=80 spell
 
 set foldmethod=indent
 set foldlevelstart=99
@@ -76,6 +76,12 @@ augroup vagrant
   setlocal ts=2 sts=2 sw=2
 augroup END
 
+" highlight text longer than 120 characters
+" http://blog.ezyang.com/2010/03/vim-textwidth/
+autocmd BufEnter * highlight OverLength ctermbg=darkgrey guibg=#592929
+autocmd BufEnter * match OverLength /\%120v.*/
+
+" make bash aliases available from shell commands entered with :!
 let $BASH_ENV = '~/.bash_aliases'
 
 let g:python_host_prog = '/Users/twilliams/.pyenv/versions/neovim2/bin/python'
@@ -109,8 +115,9 @@ Plug 'tfnico/vim-gradle'
 Plug 'saltstack/salt-vim'
 Plug 'elmcast/elm-vim'
 "Plug 'valloric/youcompleteme'
-Plug 'vimwiki/vimwiki'
+"Plug 'vimwiki/vimwiki'
 Plug 'nathanaelkane/vim-indent-guides'
+Plug 'ap/vim-css-color'
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
@@ -160,9 +167,9 @@ let g:jsx_ext_required = 0 " allow JSX in normal JS files
 highlight Normal ctermbg=black
 
 " vimwiki
-let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki/', 'syntax': 'markdown', 'ext': '.md', 'nested_syntaxes': {'vim': 'vim', 'javascript': 'javascript'}}]
-let g:vimwiki_use_mouse = 1
-let g:vimwiki_folding = "syntax"
+"let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki/', 'syntax': 'markdown', 'ext': '.md', 'nested_syntaxes': {'vim': 'vim', 'javascript': 'javascript'}}]
+"let g:vimwiki_use_mouse = 1
+"let g:vimwiki_folding = "syntax"
 
 let g:indent_guides_auto_colors = 0
 hi IndentGuidesOdd  guibg=DarkGrey  ctermbg=234
