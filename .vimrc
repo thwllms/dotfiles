@@ -81,6 +81,9 @@ augroup END
 autocmd BufEnter * highlight OverLength ctermbg=darkgrey guibg=#592929
 autocmd BufEnter * match OverLength /\%120v.*/
 
+autocmd BufEnter * highlight TrailingWhitespace ctermbg=darkgrey guibg=#592929
+autocmd BufEnter * match TrailingWhitespace /\s\+$/
+
 " make bash aliases available from shell commands entered with :!
 let $BASH_ENV = '~/.bash_aliases'
 
@@ -170,6 +173,10 @@ highlight Normal ctermbg=black
 "let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki/', 'syntax': 'markdown', 'ext': '.md', 'nested_syntaxes': {'vim': 'vim', 'javascript': 'javascript'}}]
 "let g:vimwiki_use_mouse = 1
 "let g:vimwiki_folding = "syntax"
+
+" vim-markdown
+let g:vim_markdown_auto_insert_bullets = 0
+let g:vim_markdown_new_list_item_indent = 0
 
 let g:indent_guides_auto_colors = 0
 hi IndentGuidesOdd  guibg=DarkGrey  ctermbg=234
