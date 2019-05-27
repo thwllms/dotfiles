@@ -35,9 +35,9 @@ noremap <c-h> :call ToggleAutoHighlightMatchingWord()<CR>
 " <c-s> to prompt for search/replace of the current word
 function! SearchReplaceCurrentWord()
   let cword = expand('<cword>')
-  let userInput = input(':%s/' . cword . '/')
+  let userInput = input(':%s/\<' . cword . '\>/')
   if len(userInput) > 0
-    exe '%s/' . cword . '/' . userInput
+    exe '%s/\<' . cword . '\>/' . userInput
   endif
 endfunction
 noremap <c-s> :call SearchReplaceCurrentWord()<CR>
