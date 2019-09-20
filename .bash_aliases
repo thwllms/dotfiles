@@ -40,6 +40,12 @@ alias wget='wget -c'
 
 alias LOCAL_HOST=`ifconfig en0 | awk '/inet /{print $2}' | cut -f2 -d':'`
 
+dclean () {
+  docker rm $(docker ps -q -f status=exited)
+  docker rmi $(docker images -f "dangling=true" -q)
+  docker volume rm $(docker volume ls -qf dangling=true)
+}
+
 # Get any local (non-synchronized) aliases
 if [ -f ~/.bash_aliases.local ]; then
     source ~/.bash_aliases.local
